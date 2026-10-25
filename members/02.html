@@ -3,19 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>李嘉赢 · 自我介绍</title>
+  <title>李嘉嬴 · 自我介绍</title>
   <link rel="stylesheet" href="card.css">
-  <!-- 只修改当前文件即可。可在这里添加 <style>，为自己的卡片设计样式。 -->
+  <style>
+    /* 不按"一句话 + 三个标签 + 学习目标"填空，改成三问三答。
+       每个答案都落在具体做过的事上，答完这三问，人也就介绍完了。 */
+    body { --accent: #2f6f5e; padding: 15px 20px 7px; display: flex; flex-direction: column; }
+    body::before { width: 132px; height: 132px; top: -54px; right: 0; opacity: .07; }
+    .eyebrow { letter-spacing: 2.2px; margin-bottom: 6px; }
+    h2 { font-size: 22px; }
+    .class-name { color: #8a958a; margin-top: 2px; }
+    .qa { margin: 11px 0 0; }
+    .qa p {
+      margin: 0 0 7px; padding-left: 9px; border-left: 2px solid #e1e9df;
+      font-size: 12.5px; line-height: 18.5px; color: #5d6b61;
+    }
+    .qa p:last-child { margin-bottom: 0; }
+    .qa .q { color: var(--accent); font-weight: 600; margin-right: 3px; }
+    .ps {
+      margin: auto 0 0; padding-top: 6px; border-top: 1px dashed #e3ebe1;
+      font-size: 11.5px; line-height: 16px; color: #8a958a;
+    }
+    .ps b { color: #6f7d72; font-weight: 600; }
+    @media (max-width: 345px) {
+      body { padding: 13px 16px 7px; }
+      h2 { font-size: 20px; }
+      .qa p { font-size: 12px; line-height: 18px; }
+      .ps { font-size: 11px; line-height: 15px; }
+    }
+  </style>
 </head>
-<body style="--accent: #39785b">
-  <p class="eyebrow">ABOUT ME / 02</p>
-  <h2>李嘉赢</h2>
+<body>
+  <p class="eyebrow">3 QUESTIONS / 02</p>
+  <h2>李嘉嬴</h2>
   <p class="class-name">计2603</p>
-  <!-- TODO：完成下面的介绍、三个技能或兴趣标签，以及学习目标。 -->
-  <p class="intro">待完成：用一句话介绍你自己。</p>
-  <ul class="tags" aria-label="我的技能和兴趣">
-    <li>兴趣一</li><li>技能二</li><li>关键词三</li>
-  </ul>
-  <p class="goal"><strong>我想学会</strong>待完成：写下你的学习目标。</p>
+  <div class="qa">
+    <p><span class="q">为什么选计算机？</span>一半是好奇，一半是想自己做点能用的东西。</p>
+    <p><span class="q">最近在折腾什么？</span>让排序的每一步都看得见：每移动一次就记一帧。</p>
+    <p><span class="q">这学期想变成什么样？</span>把会的东西讲到别人听懂；也敢在别人的 PR 下说「这里不对」。</p>
+  </div>
+  <p class="ps">P.S. 最后一个字是<b>「嬴」</b>，不是「赢」。</p>
 </body>
 </html>
