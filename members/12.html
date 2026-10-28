@@ -1,21 +1,307 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>周钰山 · 自我介绍</title>
+  <title>周钰山 · 藏山之玉</title>
   <link rel="stylesheet" href="card.css">
-  <!-- 只修改当前文件即可。可在这里添加 <style>，为自己的卡片设计样式。 -->
+
+  <style>
+    body {
+      --accent: #39785b;
+      margin: 0;
+      background: #f5f6ef;
+      color: #263b30;
+      font-family: "Microsoft YaHei", sans-serif;
+    }
+
+    .profile {
+      max-width: 800px;
+      margin: auto;
+      padding: 26px 18px 45px;
+    }
+
+    .hero {
+      padding: 30px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #e1eee1, #faf4e7);
+      border: 1px solid #d5e3d4;
+    }
+
+    .eyebrow {
+      color: #568064;
+      letter-spacing: 3px;
+      font-size: 12px;
+    }
+
+    .class-name {
+      color: #66816b;
+      font-size: 14px;
+    }
+
+    h1 {
+      margin: 15px 0;
+      font-size: clamp(30px, 6vw, 46px);
+      line-height: 1.4;
+      letter-spacing: 2px;
+    }
+
+    .motto {
+      line-height: 2;
+      color: #58715e;
+    }
+
+    .portrait {
+      width: 100%;
+      max-height: 380px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-top: 15px;
+      display: block;
+      background: #e2e9df;
+    }
+
+    .section {
+      margin-top: 30px;
+      padding: 24px;
+      background: #fff;
+      border: 1px solid #e4e9df;
+      border-radius: 20px;
+    }
+
+    .section h2 {
+      margin-top: 0;
+      font-size: 22px;
+      color: #39785b;
+    }
+
+    .story {
+      line-height: 2;
+      color: #45574a;
+      font-size: 15px;
+    }
+
+    .values {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .value-card {
+      padding: 16px 13px;
+      border-radius: 14px;
+      background: #f4f7f0;
+      border: 1px solid #e0e8dc;
+    }
+
+    .value-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #39785b;
+    }
+
+    .value-card p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .achievements {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .achievement {
+      padding: 16px;
+      border-radius: 14px;
+      background: #f5f7f1;
+    }
+
+    .achievement strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #39785b;
+    }
+
+    .achievement p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .landscape {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+      margin-top: 16px;
+      background: #e2e9df;
+    }
+
+    .quote {
+      padding: 22px;
+      border-left: 4px solid #79a382;
+      border-radius: 0 14px 14px 0;
+      background: #eaf1e5;
+      line-height: 2;
+      color: #45574a;
+    }
+
+    .quote strong {
+      color: #39785b;
+      font-size: 17px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 28px;
+      color: #65806a;
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    @media (max-width: 520px) {
+      .hero, .section {
+        padding: 20px;
+      }
+
+      .values {
+        grid-template-columns: 1fr;
+      }
+
+      .achievements {
+        grid-template-columns: 1fr;
+      }
+
+      .landscape {
+        height: 210px;
+      }
+    }
+  </style>
 </head>
-<body style="--accent: #39785b">
-  <p class="eyebrow">ABOUT ME / 12</p>
-  <h2>周钰山</h2>
-  <p class="class-name">计2601</p>
-  <!-- TODO：完成下面的介绍、三个技能或兴趣标签，以及学习目标。 -->
-  <p class="intro">待完成：用一句话介绍你自己。</p>
-  <ul class="tags" aria-label="我的技能和兴趣">
-    <li>兴趣一</li><li>技能二</li><li>关键词三</li>
-  </ul>
-  <p class="goal"><strong>我想学会</strong>待完成：写下你的学习目标。</p>
+
+<body>
+  <main class="profile">
+    <header class="hero">
+      <p class="eyebrow">ABOUT ME / GREEN STUDIO</p>
+      <p class="class-name">计2601 · 周钰山</p>
+
+      <h1>藏山之玉，<br>亦愿他山攻玉。</h1>
+
+      <p class="motto">
+        温润踏实，乐于合作；认真做事，也认真让大家开心。<br>
+        热爱运动、音乐与风景，也期待在技术世界里不断探索。
+      </p>
+
+      <img
+        class="portrait"
+        src="photos/view.jpg"
+        alt="周钰山镜头里的风景"
+      >
+    </header>
+
+    <section class="section">
+      <h2>01 / 名字里的三座山</h2>
+
+      <p class="story">
+        我总觉得，名字不只是一个称呼，也可以是一种对自己的期许。
+        性格正如我的名字：藏山之玉，是温润踏实；
+        他山攻玉，是合作助人；有矿之山，则是幽默破冰。
+        三种不同的意味，也构成了我希望成为的自己。
+      </p>
+
+      <div class="values">
+        <article class="value-card">
+          <strong>藏山之玉</strong>
+          <p>温润踏实。认真做好每一件事，不张扬，也不轻易放弃。</p>
+        </article>
+
+        <article class="value-card">
+          <strong>他山攻玉</strong>
+          <p>合作助人。愿意分享、彼此学习，在交流中共同进步。</p>
+        </article>
+
+        <article class="value-card">
+          <strong>有矿之山</strong>
+          <p>幽默破冰。希望自己能认真做事，也能给团队带来笑声。</p>
+        </article>
+      </div>
+
+      <p class="story">
+        我相信，一个优秀的团队不只是每个人都很强，
+        更是大家愿意互相帮助、彼此托举。
+        如果有机会加入绿荫，我希望自己能帮助他人、团结伙伴，
+        也能在大家疲惫的时候，成为那个逗笑大家的人。
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>02 / 不止一种热爱</h2>
+
+      <p class="story">
+        运动让我学会坚持，也让我理解团队配合的意义；
+        音乐让我感受节奏与默契；摄影则让我愿意停下脚步，
+        认真观察生活中容易被忽略的美好。
+      </p>
+
+      <div class="achievements">
+        <article class="achievement">
+          <strong>⚽ 足球 · 并肩作战</strong>
+          <p>曾获得足球市长杯冠军，并在省长杯中闯入八强。</p>
+        </article>
+
+        <article class="achievement">
+          <strong>🏸 羽毛球 · 全力以赴</strong>
+          <p>曾闯入校级四强，也热爱游泳、健身与跑步。</p>
+        </article>
+
+        <article class="achievement">
+          <strong>🎵 单簧管 · 与乐同行</strong>
+          <p>擅长单簧管，多次参与校级乐团助演，助力演唱比赛获得一等奖。</p>
+        </article>
+
+        <article class="achievement">
+          <strong>📷 摄影 · 记录风景</strong>
+          <p>喜欢用镜头记录山川、草木与光影，也享受发现日常之美的过程。</p>
+        </article>
+      </div>
+
+      <img
+        class="landscape"
+        src="photos/landscape.jpg"
+        alt="周钰山镜头里的另一处风景"
+      >
+    </section>
+
+    <section class="section">
+      <h2>03 / 关于绿荫与成长</h2>
+
+      <div class="quote">
+        <strong>“玉在山而草木润，润生珠而崖不枯。”</strong>
+        <p>
+          我想，绿荫正是一座值得扎根的山。
+          每个人都能在这里打磨自己，也把收获带给身边的人；
+          当技术与热爱汇聚，成长便不再只是一个人的事。
+        </p>
+      </div>
+
+      <p class="story">
+        我期待和绿荫里的学长学姐们一起打磨技术、提升实力，
+        在项目与合作中不断突破，寻找能够相互启发、
+        共同进步的技术挚友。
+        现在的我还在学习路上，但我愿意保持好奇、踏实行动，
+        把每一次尝试都变成下一次进步的起点。
+      </p>
+    </section>
+
+    <footer class="footer">
+      <p>温润而坚定 · 乐于合作 · 持续生长</p>
+      <p>愿与大家一起，让想法落地，让绿荫更浓。</p>
+    </footer>
+  </main>
 </body>
 </html>
