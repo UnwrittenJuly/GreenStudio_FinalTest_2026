@@ -4,18 +4,232 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>叶斌铖 · 自我介绍</title>
-  <link rel="stylesheet" href="card.css">
-  <!-- 只修改当前文件即可。可在这里添加 <style>，为自己的卡片设计样式。 -->
+  <style>
+  * { box-sizing: border-box; }
+
+  html {
+    height: 100%;
+    display: grid;
+    place-items: center;
+    background: #ffffff;
+  }
+
+  body {
+    position: relative;
+    overflow: hidden;
+    width: min(100vw, 430px);
+    height: min(100vh, 860px);
+    margin: 0;
+    padding: 56px 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    font-family: 'Microsoft YaHei', sans-serif;
+    text-align: center;
+    color: #1d3b2c;
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at 18% 4%, rgba(72, 214, 156, .22), transparent 58%),
+      radial-gradient(circle at 88% 96%, rgba(52, 132, 214, .14), transparent 58%),
+      linear-gradient(165deg, #ffffff 0%, #f3fbf6 46%, #ffffff 100%);
+    background-size: 100% 100%, 100% 100%, 200% 200%;
+    box-shadow:
+      0 30px 90px rgba(16, 58, 38, .14),
+      inset 0 0 0 1px rgba(57, 120, 91, .16);
+    animation: bgFlow 18s ease-in-out infinite;
+  }
+
+  /* —— 氛围层：漂浮光晕 + 扫光 —— */
+  body::before,
+  body::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  body::before {
+    width: 320px;
+    height: 320px;
+    top: -120px;
+    left: -130px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(80, 235, 172, .30), rgba(80, 235, 172, 0) 70%);
+    filter: blur(18px);
+    animation: drift 14s ease-in-out infinite;
+  }
+
+  body::after {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 38%;
+    background: linear-gradient(180deg,
+        rgba(60, 200, 140, 0) 0%,
+        rgba(60, 200, 140, .12) 50%,
+        rgba(60, 200, 140, 0) 100%);
+    transform: translateY(-130%);
+    animation: sweep 8s 1.5s ease-in-out infinite;
+  }
+
+  /* —— 内容统一入场 —— */
+  body > * {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    animation: rise .9s cubic-bezier(.22, 1, .36, 1) both;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: .46em;
+    text-indent: .46em;
+    color: #3a9c72;
+    text-transform: uppercase;
+    animation: rise .9s .10s cubic-bezier(.22, 1, .36, 1) both;
+  }
+
+  h2 {
+    font-size: clamp(34px, 9.5vw, 46px);
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-indent: .12em;
+    line-height: 1.25;
+    background: linear-gradient(100deg, #10341f 8%, #2aa77a 46%, #10341f 88%);
+    background-size: 240% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 10px rgba(42, 167, 122, .18));
+    animation: rise .9s .22s cubic-bezier(.22, 1, .36, 1) both,
+               shine 6s 1s linear infinite;
+  }
+
+  .class-name {
+    display: inline-block;
+    padding: 8px 24px;
+    font-size: 14px;
+    letter-spacing: .28em;
+    text-indent: .28em;
+    color: #1f6b48;
+    border: 1px solid rgba(57, 120, 91, .35);
+    border-radius: 999px;
+    background: rgba(90, 220, 160, .12);
+    animation: rise .9s .40s cubic-bezier(.22, 1, .36, 1) both,
+               halo 3.6s 1.6s ease-in-out infinite;
+  }
+
+  .intro {
+    max-width: 21em;
+    font-size: 15px;
+    line-height: 2;
+    letter-spacing: .04em;
+    color: #4a6b58;
+    animation: rise .9s .55s cubic-bezier(.22, 1, .36, 1) both;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 0;
+    list-style: none;
+    animation: rise .9s .72s cubic-bezier(.22, 1, .36, 1) both;
+  }
+
+  .tags li {
+    padding: 8px 18px;
+    font-size: 13px;
+    letter-spacing: .06em;
+    color: #1c5c3d;
+    border: 1px solid rgba(57, 120, 91, .28);
+    border-radius: 999px;
+    background: linear-gradient(140deg, rgba(206, 246, 227, .95), rgba(245, 253, 249, .95));
+    box-shadow: 0 6px 18px rgba(20, 60, 40, .10);
+    animation: bob 3.6s ease-in-out infinite;
+  }
+  .tags li:nth-child(1) { animation-delay: 0s; }
+  .tags li:nth-child(2) { animation-delay: .55s; }
+  .tags li:nth-child(3) { animation-delay: 1.1s; }
+
+  .goal {
+    max-width: 23em;
+    padding-top: 20px;
+    border-top: 1px solid rgba(57, 120, 91, .18);
+    font-size: 14px;
+    line-height: 1.95;
+    color: #55746a;
+    animation: rise .9s .90s cubic-bezier(.22, 1, .36, 1) both;
+  }
+
+  .goal strong {
+    color: #2aa77a;
+    letter-spacing: .06em;
+  }
+
+  /* —— 关键帧 —— */
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(26px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes shine {
+    0%   { background-position: 220% center; }
+    100% { background-position: -120% center; }
+  }
+
+  @keyframes bgFlow {
+    0%, 100% { background-position: 0% 0%, 100% 100%, 0% 0%; }
+    50%      { background-position: 0% 0%, 100% 100%, 100% 100%; }
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(46px, 60px) scale(1.18); }
+  }
+
+  @keyframes sweep {
+    0%   { transform: translateY(-130%); opacity: 0; }
+    12%  { opacity: 1; }
+    88%  { opacity: 1; }
+    100% { transform: translateY(300%); opacity: 0; }
+  }
+
+  @keyframes halo {
+    0%, 100% { box-shadow: 0 0 18px rgba(90, 200, 155, .18), inset 0 0 12px rgba(90, 200, 155, .10); }
+    50%      { box-shadow: 0 0 34px rgba(90, 200, 155, .42), inset 0 0 20px rgba(90, 200, 155, .20); }
+  }
+
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-7px); }
+  }
+
+  /* —— 动效友好降级 —— */
+  @media (prefers-reduced-motion: reduce) {
+    body,
+    body::before,
+    body::after,
+    body > *,
+    .tags li {
+      animation: none !important;
+    }
+    body::after { display: none; }
+  }
+  </style>
 </head>
 <body style="--accent: #39785b">
   <p class="eyebrow">ABOUT ME / 07</p>
   <h2>叶斌铖</h2>
   <p class="class-name">智能2602</p>
-  <!-- TODO：完成下面的介绍、三个技能或兴趣标签，以及学习目标。 -->
-  <p class="intro">待完成：用一句话介绍你自己。</p>
+  <p class="intro">我是孜孜不倦的学习者，在知识的旅途中不断蜕变。</p>
   <ul class="tags" aria-label="我的技能和兴趣">
-    <li>兴趣一</li><li>技能二</li><li>关键词三</li>
+    <li>python</li><li>机器学习</li><li>深度探索</li>
   </ul>
-  <p class="goal"><strong>我想学会</strong>待完成：写下你的学习目标。</p>
+  <p class="goal"><strong>我想学会</strong>在绿荫的指导下，逐步学习Python编程和机器学习算法。</p>
 </body>
 </html>
