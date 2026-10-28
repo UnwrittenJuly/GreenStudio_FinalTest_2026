@@ -1,21 +1,800 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>李佳璐 · 自我介绍</title>
-  <link rel="stylesheet" href="card.css">
-  <!-- 只修改当前文件即可。可在这里添加 <style>，为自己的卡片设计样式。 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>李佳璐 | My Little World</title>
+
+<style>
+:root {
+  --pink-bg: #fbf5fa;
+  --paper: #fffafd;
+  --lavender: #d9c4ef;
+  --lavender-light: #eee4f7;
+  --lavender-deep: #ad91cf;
+  --purple: #594665;
+  --purple-soft: #9280a8;
+  --green: #a8c79f;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 18px;
+  color: var(--purple);
+  background: linear-gradient(135deg, #fcf7fb, #eee4f5);
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+}
+
+.page {
+  max-width: 1500px;
+  margin: auto;
+  overflow: hidden;
+  border: 1px solid white;
+  border-radius: 30px;
+  background: rgba(255,250,253,.96);
+  box-shadow: 0 20px 70px rgba(81,64,95,.09);
+}
+
+/* 第一屏 */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 20px;
+  min-height: 590px;
+  padding: 45px clamp(25px, 7vw, 95px);
+  overflow: hidden;
+  background: radial-gradient(
+    ellipse at 78% 42%,
+    rgba(225,207,244,.45),
+    transparent 49%
+  );
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 420px;
+  height: 420px;
+  top: -235px;
+  right: -100px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #e8dcf5, #f7e3f0);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 220px;
+  height: 220px;
+  bottom: -165px;
+  left: -115px;
+  border: 1px solid #ddcce9;
+  border-radius: 50%;
+}
+
+.intro { position: relative; z-index: 3; }
+
+.label {
+  display: inline-block;
+  padding: 13px 20px;
+  color: white;
+  background: var(--purple);
+  border-radius: 10px;
+  font: 700 14px Georgia, serif;
+  letter-spacing: 3px;
+}
+
+.eyebrow {
+  margin: 45px 0 12px;
+  color: #a18aba;
+  font: 600 14px Georgia, serif;
+  letter-spacing: 4px;
+}
+
+h1 {
+  margin: 0;
+  font-family: "STKaiti", "KaiTi", "Microsoft YaHei", sans-serif;
+  font-size: clamp(58px, 7vw, 92px);
+  font-weight: 800;
+  letter-spacing: 5px;
+  line-height: 1.3;
+}
+
+.subtitle {
+  margin: 15px 0 0;
+  color: var(--purple-soft);
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.accent-line {
+  width: 100px;
+  height: 6px;
+  margin-top: 30px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #b59ad8, #efc9df);
+}
+
+.tagline {
+  margin-top: 24px;
+  color: #a18caf;
+  font: italic 13px Georgia, serif;
+  letter-spacing: 2px;
+}
+
+/* 花朵和兔子展示区 */
+
+.flower-scene {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 455px;
+}
+
+.scene-glow {
+  position: absolute;
+  width: min(390px, 100%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(224,207,243,.7),
+    rgba(242,226,243,.3) 53%,
+    transparent 74%
+  );
+  animation: glow 5s ease-in-out infinite;
+}
+
+.scene-ring {
+  position: absolute;
+  width: min(350px, 92%);
+  aspect-ratio: 1;
+  border: 1px solid rgba(193,167,220,.48);
+  border-radius: 50%;
+}
+
+.scene-ring::after {
+  content: "";
+  position: absolute;
+  inset: 15px;
+  border: 1px dashed rgba(193,167,220,.4);
+  border-radius: 50%;
+}
+
+@keyframes glow {
+  0%,100% { transform: scale(.97); opacity: .8; }
+  50% { transform: scale(1.03); opacity: 1; }
+}
+
+.garden-art {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 470px;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 8px 12px rgba(94,72,111,.07));
+}
+
+.flower-head {
+  transform-box: view-box;
+  transform-origin: 230px 144px;
+  animation: flower-sway 4.5s ease-in-out infinite;
+}
+
+.petal {
+  stroke: #c5ace5;
+  stroke-width: 1.3;
+}
+
+@keyframes flower-sway {
+  0%,100% { transform: rotate(-1.5deg); }
+  50% { transform: rotate(1.5deg); }
+}
+
+.leaf-left, .leaf-right {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  animation: leaf-sway 4s ease-in-out infinite;
+}
+
+.leaf-right { animation-delay: -1.5s; }
+
+@keyframes leaf-sway {
+  0%,100% { transform: rotate(-2deg); }
+  50% { transform: rotate(4deg); }
+}
+
+.bunny {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: bunny-breathe 3.5s ease-in-out infinite;
+}
+
+@keyframes bunny-breathe {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: blink 5s infinite;
+}
+
+@keyframes blink {
+  0%,43%,47%,100% { transform: scaleY(1); }
+  45% { transform: scaleY(.08); }
+}
+
+.sparkle {
+  position: absolute;
+  z-index: 3;
+  color: #aa8dcc;
+  font-size: 20px;
+  animation: sparkle 3.5s ease-in-out infinite;
+}
+
+.sparkle-one { top: 16%; left: 10%; }
+.sparkle-two { top: 25%; right: 7%; animation-delay: 1s; }
+.sparkle-three { bottom: 27%; right: 10%; animation-delay: 1.7s; }
+
+@keyframes sparkle {
+  0%,100% { opacity: .4; transform: translateY(0) scale(.85); }
+  50% { opacity: 1; transform: translateY(-7px) scale(1.1); }
+}
+
+.scene-caption {
+  position: absolute;
+  z-index: 3;
+  bottom: 7px;
+  width: 100%;
+  color: #907aa5;
+  text-align: center;
+  font: 12px Georgia, serif;
+  letter-spacing: 2.5px;
+}
+
+/* 淡紫色花瓣雨 */
+
+.petal-rain {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.falling-petal {
+  position: absolute;
+  top: -35px;
+  left: var(--left);
+  width: var(--size);
+  height: calc(var(--size) * 1.5);
+  border-radius: 85% 12% 75% 20%;
+  background: linear-gradient(145deg, #f1e5fb, #c4a7e3);
+  opacity: 0;
+  animation: petal-fall var(--duration) linear var(--delay) infinite;
+}
+
+@keyframes petal-fall {
+  0% { opacity: 0; transform: translate(0,-20px) rotate(0); }
+  8% { opacity: .7; }
+  30% { transform: translate(var(--sway),200px) rotate(130deg); }
+  60% { transform: translate(calc(var(--sway) * -.6),400px) rotate(270deg); }
+  92% { opacity: .6; }
+  100% { opacity: 0; transform: translate(var(--sway),650px) rotate(440deg); }
+}
+
+/* 兴趣卡片区域 */
+
+.content {
+  position: relative;
+  z-index: 2;
+  padding: 35px clamp(25px, 7vw, 95px) 55px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: clamp(23px,3vw,32px);
+  font-weight: 800;
+}
+
+.section-heading h2 span { color: #b59ad8; }
+
+.section-note {
+  color: #a18caf;
+  font: 12px Georgia, serif;
+  letter-spacing: 2px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 16px;
+}
+
+.card {
+  position: relative;
+  min-width: 0;
+  min-height: 195px;
+  padding: 25px 21px;
+  overflow: hidden;
+  border: 1px solid #ecdfef;
+  border-radius: 22px;
+  background: #fffafd;
+  box-shadow: 0 8px 25px rgba(81,64,95,.04);
+  transition: transform .25s, box-shadow .25s;
+}
+
+.card:nth-child(even) {
+  background: linear-gradient(140deg,#f0e7f9,#fcf2f8);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px rgba(81,64,95,.1);
+}
+
+.card-number {
+  display: block;
+  color: #a28aba;
+  font: 12px Georgia,serif;
+  letter-spacing: 2px;
+}
+
+/* 标题保持原样，内容使用更清晰的层次 */
+
+.card h3 {
+  position: relative;
+  z-index: 1;
+  margin: 22px 0 12px;
+  color: #594665;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.card-description {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: #82718f;
+  font-size: 14px;
+  line-height: 2;
+  overflow-wrap: anywhere;
+}
+
+.card:nth-child(1) .card-description {
+  color: #8b729e;
+}
+
+.card:nth-child(2) .card-description {
+  color: #77648e;
+}
+
+.card:nth-child(3) .card-description {
+  color: #9b789e;
+}
+
+.card:nth-child(4) .card-description {
+  color: #776b88;
+  font-family: "STKaiti", "KaiTi", "Microsoft YaHei", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.card::after {
+  content: "✧";
+  position: absolute;
+  right: 12px;
+  bottom: -25px;
+  color: #e5d8f0;
+  font: 75px Georgia,serif;
+  pointer-events: none;
+}
+
+.goal {
+  margin-top: 28px;
+  padding: 24px 28px;
+  border-radius: 21px;
+  color: white;
+  background: linear-gradient(110deg,#77618e,#a58aba);
+  box-shadow: 0 12px 28px rgba(81,64,95,.12);
+}
+
+.goal p { margin: 0; line-height: 1.9; }
+
+.goal strong {
+  margin-right: 12px;
+  color: #ffe7f5;
+  font-size: 18px;
+}
+
+.footer {
+  padding: 0 20px 28px;
+  color: #a18caf;
+  text-align: center;
+  font: 11px Georgia,serif;
+  letter-spacing: 3px;
+}
+
+/* 手机适配 */
+
+@media (max-width: 1000px) {
+  .cards { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+
+@media (max-width: 850px) {
+  body { padding: 9px; }
+  .page { border-radius: 23px; }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 30px 24px 20px;
+    gap: 5px;
+  }
+
+  .eyebrow { margin-top: 35px; }
+  h1 { font-size: 61px; }
+  .flower-scene { min-height: 430px; }
+  .garden-art { max-width: 420px; }
+  .content { padding: 25px 22px 35px; }
+}
+
+@media (max-width: 460px) {
+  .cards { grid-template-columns: 1fr; }
+  .card { min-height: 145px; }
+  .flower-scene { min-height: 380px; }
+  .garden-art { width: 115%; max-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
 </head>
-<body style="--accent: #39785b">
-  <p class="eyebrow">ABOUT ME / 04</p>
-  <h2>李佳璐</h2>
-  <p class="class-name">智能2601</p>
-  <!-- TODO：完成下面的介绍、三个技能或兴趣标签，以及学习目标。 -->
-  <p class="intro">待完成：用一句话介绍你自己。</p>
-  <ul class="tags" aria-label="我的技能和兴趣">
-    <li>兴趣一</li><li>技能二</li><li>关键词三</li>
-  </ul>
-  <p class="goal"><strong>我想学会</strong>待完成：写下你的学习目标。</p>
+
+<body>
+<main class="page">
+
+<header class="hero">
+
+  <div class="petal-rain" aria-hidden="true">
+    <span class="falling-petal" style="--left:5%;--size:12px;--duration:10s;--delay:-2s;--sway:35px"></span>
+    <span class="falling-petal" style="--left:15%;--size:9px;--duration:12s;--delay:-7s;--sway:50px"></span>
+    <span class="falling-petal" style="--left:25%;--size:13px;--duration:11s;--delay:-4s;--sway:40px"></span>
+    <span class="falling-petal" style="--left:36%;--size:9px;--duration:13s;--delay:-9s;--sway:50px"></span>
+    <span class="falling-petal" style="--left:47%;--size:12px;--duration:11s;--delay:-1s;--sway:45px"></span>
+    <span class="falling-petal" style="--left:58%;--size:14px;--duration:14s;--delay:-8s;--sway:60px"></span>
+    <span class="falling-petal" style="--left:68%;--size:10px;--duration:10s;--delay:-5s;--sway:35px"></span>
+    <span class="falling-petal" style="--left:78%;--size:12px;--duration:12s;--delay:-10s;--sway:50px"></span>
+    <span class="falling-petal" style="--left:89%;--size:14px;--duration:10s;--delay:-3s;--sway:40px"></span>
+  </div>
+
+  <div class="intro">
+    <span class="label">ABOUT ME / 04</span>
+    <p class="eyebrow">01 / PERSONAL PROFILE</p>
+    <h1>李佳璐</h1>
+    <p class="subtitle">智能2601 · 个人介绍</p>
+    <div class="accent-line"></div>
+    <p class="tagline">MY SPACE · MY STORY</p>
+  </div>
+
+  <div class="flower-scene" aria-label="完整的淡紫色花朵和奶白色小兔子">
+    <div class="scene-glow"></div>
+    <div class="scene-ring"></div>
+
+    <span class="sparkle sparkle-one">✦</span>
+    <span class="sparkle sparkle-two">✧</span>
+    <span class="sparkle sparkle-three">✦</span>
+
+    <svg class="garden-art"
+         viewBox="0 0 460 440"
+         xmlns="http://www.w3.org/2000/svg"
+         role="img"
+         aria-label="淡紫色花朵与奶白色小兔子">
+
+      <defs>
+        <linearGradient id="petalGradient" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#f5ecfb"/>
+          <stop offset="55%" stop-color="#dfcef2"/>
+          <stop offset="100%" stop-color="#c2a8e5"/>
+        </linearGradient>
+
+        <linearGradient id="stemGradient" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#84a981"/>
+          <stop offset="50%" stop-color="#c0d8b3"/>
+          <stop offset="100%" stop-color="#8caf85"/>
+        </linearGradient>
+
+        <linearGradient id="bunnyFur" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="70%" stop-color="#fffdfb"/>
+          <stop offset="100%" stop-color="#f1eaf4"/>
+        </linearGradient>
+
+        <linearGradient id="earPink" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#f9dce9"/>
+          <stop offset="100%" stop-color="#edbfd9"/>
+        </linearGradient>
+
+        <radialGradient id="flowerCenter">
+          <stop offset="0%" stop-color="#fffafd"/>
+          <stop offset="75%" stop-color="#f0d9ec"/>
+          <stop offset="100%" stop-color="#d8b9df"/>
+        </radialGradient>
+      </defs>
+
+      <ellipse cx="230" cy="398" rx="145" ry="16"
+               fill="#c7b2ce" opacity=".22"/>
+
+      <path d="M230 174
+               C228 220 231 265 230 315
+               C229 342 230 365 230 383"
+            fill="none"
+            stroke="url(#stemGradient)"
+            stroke-width="9"
+            stroke-linecap="round"/>
+
+      <g class="leaf-left">
+        <path d="M230 315
+                 C199 308 183 282 188 257
+                 C215 263 236 284 230 315Z"
+              fill="#a9c7a2"/>
+        <path d="M229 310 Q211 285 195 269"
+              fill="none" stroke="#e2edd9"
+              stroke-width="2" stroke-linecap="round"/>
+      </g>
+
+      <g class="leaf-right">
+        <path d="M231 279
+                 C263 271 278 247 273 224
+                 C246 230 225 250 231 279Z"
+              fill="#bdd4b3"/>
+        <path d="M233 274 Q251 251 266 237"
+              fill="none" stroke="#e2edd9"
+              stroke-width="2" stroke-linecap="round"/>
+      </g>
+
+      <path d="M216 165
+               Q230 181 244 165
+               L241 181
+               Q230 190 219 181Z"
+            fill="#91b78b"/>
+
+      <g class="flower-head">
+        <ellipse class="petal"
+                 cx="230" cy="100" rx="24" ry="48"
+                 fill="url(#petalGradient)"/>
+
+        <ellipse class="petal"
+                 cx="230" cy="100" rx="24" ry="48"
+                 fill="url(#petalGradient)"
+                 transform="rotate(72 230 144)"/>
+
+        <ellipse class="petal"
+                 cx="230" cy="100" rx="24" ry="48"
+                 fill="url(#petalGradient)"
+                 transform="rotate(144 230 144)"/>
+
+        <ellipse class="petal"
+                 cx="230" cy="100" rx="24" ry="48"
+                 fill="url(#petalGradient)"
+                 transform="rotate(216 230 144)"/>
+
+        <ellipse class="petal"
+                 cx="230" cy="100" rx="24" ry="48"
+                 fill="url(#petalGradient)"
+                 transform="rotate(288 230 144)"/>
+
+        <path d="M230 65 Q240 92 230 112"
+              fill="none" stroke="#fffaff"
+              stroke-width="2.5" opacity=".65"
+              stroke-linecap="round"/>
+
+        <circle cx="230" cy="144" r="24"
+                fill="#fffafd" stroke="#e4d1ef" stroke-width="2"/>
+        <circle cx="230" cy="144" r="18"
+                fill="url(#flowerCenter)"/>
+        <circle cx="230" cy="144" r="11"
+                fill="#e8c7e1"/>
+
+        <g fill="#fff9fd">
+          <circle cx="225" cy="139" r="2"/>
+          <circle cx="234" cy="138" r="1.7"/>
+          <circle cx="235" cy="147" r="2"/>
+          <circle cx="226" cy="149" r="1.6"/>
+          <circle cx="230" cy="143" r="1.5"/>
+        </g>
+      </g>
+
+      <g class="bunny">
+        <path d="M316 296
+                 C302 276 301 240 309 215
+                 C313 202 322 207 327 225
+                 C333 249 328 278 324 297Z"
+              fill="url(#bunnyFur)"
+              stroke="#e7dce9" stroke-width="1.5"/>
+
+        <path d="M314 272
+                 C309 249 311 225 315 218
+                 C322 239 322 258 319 278Z"
+              fill="url(#earPink)"/>
+
+        <path d="M335 297
+                 C326 276 328 241 339 219
+                 C346 206 355 214 357 234
+                 C359 257 350 282 346 299Z"
+              fill="url(#bunnyFur)"
+              stroke="#e7dce9" stroke-width="1.5"/>
+
+        <path d="M340 273
+                 C337 251 340 229 344 222
+                 C350 242 347 262 343 279Z"
+              fill="url(#earPink)"/>
+
+        <circle cx="363" cy="367" r="14"
+                fill="url(#bunnyFur)"
+                stroke="#eee5ef" stroke-width="1.5"/>
+        <circle cx="359" cy="362" r="5" fill="#ffffff"/>
+
+        <ellipse cx="333" cy="351" rx="33" ry="39"
+                 fill="url(#bunnyFur)"
+                 stroke="#e7dce9" stroke-width="1.5"/>
+
+        <ellipse cx="331" cy="357" rx="21" ry="27"
+                 fill="#fff7fb"/>
+
+        <ellipse cx="317" cy="385" rx="18" ry="10"
+                 fill="#fffdfc" stroke="#e7dce9" stroke-width="1.2"/>
+        <ellipse cx="348" cy="385" rx="18" ry="10"
+                 fill="#fffdfc" stroke="#e7dce9" stroke-width="1.2"/>
+
+        <path d="M311 385 Q314 388 317 385 M342 385 Q345 388 348 385"
+              fill="none" stroke="#efcada"
+              stroke-width="1.4" stroke-linecap="round"/>
+
+        <circle cx="332" cy="310" r="34"
+                fill="url(#bunnyFur)"
+                stroke="#e7dce9" stroke-width="1.5"/>
+
+        <ellipse cx="310" cy="320" rx="9" ry="5.5"
+                 fill="#f5c8dc" opacity=".9"/>
+        <ellipse cx="353" cy="320" rx="9" ry="5.5"
+                 fill="#f5c8dc" opacity=".9"/>
+
+        <g class="eye">
+          <ellipse cx="320" cy="308" rx="3.2" ry="4.7" fill="#554452"/>
+          <circle cx="321" cy="306" r="1.2" fill="#ffffff"/>
+        </g>
+
+        <g class="eye">
+          <ellipse cx="344" cy="308" rx="3.2" ry="4.7" fill="#554452"/>
+          <circle cx="345" cy="306" r="1.2" fill="#ffffff"/>
+        </g>
+
+        <path d="M328 317 Q332 313 336 317 Q332 322 328 317Z"
+              fill="#d995b8"/>
+
+        <path d="M332 321 Q328 326 324 323"
+              fill="none" stroke="#9d7c91"
+              stroke-width="1.5" stroke-linecap="round"/>
+
+        <path d="M332 321 Q336 326 340 323"
+              fill="none" stroke="#9d7c91"
+              stroke-width="1.5" stroke-linecap="round"/>
+
+        <path d="M331 342 Q315 331 319 344 Q323 351 331 345Z"
+              fill="#e8bfdc"/>
+        <path d="M333 342 Q349 331 345 344 Q341 351 333 345Z"
+              fill="#f3d4e8"/>
+        <circle cx="332" cy="343" r="3.5" fill="#fff8fc"/>
+      </g>
+
+      <ellipse cx="230" cy="398" rx="145" ry="16" fill="#d6c6da"/>
+      <ellipse cx="230" cy="393" rx="132" ry="9" fill="#e8dce9"/>
+
+      <path d="M99 394 Q92 374 106 369 Q111 383 99 394Z" fill="#b9cfb0"/>
+      <path d="M106 394 Q115 378 128 383 Q119 393 106 394Z" fill="#a4c49c"/>
+      <path d="M386 394 Q380 377 394 373 Q399 386 386 394Z" fill="#b9cfb0"/>
+      <path d="M393 394 Q405 381 414 388 Q405 395 393 394Z" fill="#a4c49c"/>
+
+      <g transform="translate(148 384)">
+        <ellipse cy="-5" rx="3" ry="6" fill="#d5b9e9"/>
+        <ellipse cx="-5" cy="0" rx="3" ry="6" fill="#e7d4f4" transform="rotate(-60 -5 0)"/>
+        <ellipse cx="5" cy="0" rx="3" ry="6" fill="#cbb1e6" transform="rotate(60 5 0)"/>
+        <circle r="3" fill="#f0d5e7"/>
+      </g>
+
+      <g transform="translate(414 384)">
+        <ellipse cy="-5" rx="3" ry="6" fill="#d5b9e9"/>
+        <ellipse cx="-5" cy="0" rx="3" ry="6" fill="#e7d4f4" transform="rotate(-60 -5 0)"/>
+        <ellipse cx="5" cy="0" rx="3" ry="6" fill="#cbb1e6" transform="rotate(60 5 0)"/>
+        <circle r="3" fill="#f0d5e7"/>
+      </g>
+    </svg>
+
+    <div class="scene-caption">A LITTLE FLOWER, A LITTLE DREAM</div>
+  </div>
+</header>
+
+<section class="content">
+
+  <div class="section-heading">
+    <h2>MY INTERESTS <span>/</span> 我的兴趣</h2>
+    <span class="section-note">THINGS I LOVE</span>
+  </div>
+
+  <div class="cards">
+
+    <article class="card">
+      <span class="card-number">01 / INTEREST</span>
+      <h3>兴趣一</h3>
+      <p class="card-description">摄影 · 绘画 · 建模</p>
+    </article>
+
+    <article class="card">
+      <span class="card-number">02 / SKILL</span>
+      <h3>技能二</h3>
+      <p class="card-description">
+        擅长静态场景建模，动画正在学习中
+      </p>
+    </article>
+
+    <article class="card">
+      <span class="card-number">03 / KEYWORD</span>
+      <h3>关键词三</h3>
+      <p class="card-description">原神 · 二次元 · 宅女</p>
+    </article>
+
+    <article class="card">
+      <span class="card-number">04 / MORE</span>
+      <h3>更多内容</h3>
+      <p class="card-description">诚朴雄伟 · 励学敦行</p>
+    </article>
+
+  </div>
+
+  <section class="goal">
+    <p>
+      <strong>我想学会</strong>
+      将编程知识与创意结合，制作出有自己风格的作品。
+    </p>
+  </section>
+
+</section>
+
+<footer class="footer">
+  MY LITTLE WORLD · 2026
+</footer>
+
+</main>
 </body>
 </html>
