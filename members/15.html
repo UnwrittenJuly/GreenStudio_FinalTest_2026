@@ -3,19 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>申铭清 · 自我介绍</title>
+  <title>朱惠瑶 · 自我介绍</title>
   <link rel="stylesheet" href="card.css">
   <!-- 只修改当前文件即可。可在这里添加 <style>，为自己的卡片设计样式。 -->
+    <style>
+        /* 1. 全屏背景设置 */
+    body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        
+        /* 核心：半透明遮罩 + 背景图 */
+        background-image: 
+            linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+            url('bg.jpg'); 
+            
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed; /* 滚动时背景固定，很高级 */
+    }
+
+    /* 2. 头像样式 */
+        .avatar {
+            width: 100px;           /* 设置宽度 */
+            height: 100px;          /* 设置高度，必须和宽度一致 */
+            border-radius: 50%;     /* 变成圆形 */
+            object-fit: cover;      /* 保持图片比例不拉伸 */
+            
+            /* 让头像居中显示 */
+            display: block;
+            margin: 20px auto;      /* 上下留白，左右自动居中 */
+        }
+    </style>
 </head>
 <body style="--accent: #39785b">
   <p class="eyebrow">ABOUT ME / 15</p>
-  <h2>申铭清</h2>
-  <p class="class-name">通信2401</p>
+  <!-- 【在这里插入】 -->
+<img src="me.png" alt="朱惠瑶的头像" class="avatar"> 
+  <h2>朱惠瑶</h2>
+  <p class="class-name">通信2602</p>
   <!-- TODO：完成下面的介绍、三个技能或兴趣标签，以及学习目标。 -->
-  <p class="intro">待完成：用一句话介绍你自己。</p>
+  <p class="intro">本人爱好繁杂，文艺人爱好，ENFP，渐变J，希望和大家多多交流一起进步呀。</p>
   <ul class="tags" aria-label="我的技能和兴趣">
-    <li>兴趣一</li><li>技能二</li><li>关键词三</li>
+    <li>多维度故事漫游+超文本艺术交互体验</li><li>创作与学术</li><li>寻找与体验</li>
   </ul>
-  <p class="goal"><strong>我想学会</strong>待完成：写下你的学习目标。</p>
+  <p class="goal"><strong>我想学会</strong>熟练掌握至少一种主流编程语言和开发框架。</p>
 </body>
 </html>
