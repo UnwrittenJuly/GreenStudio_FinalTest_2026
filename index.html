@@ -3,101 +3,46 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="18 位同学共同完成的开发项目：排序编程、自我介绍与 Git 协作。">
-  <title>GreenExplore · 一起开发</title>
+  <meta name="description" content="GreenExplore 成员介绍墙：认识每一位伙伴，了解大家的兴趣、技能和学习目标。">
+  <title>GreenExplore · 自我介绍</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='11' fill='%23248064'/%3E%3Cpath d='m15 12-8 8 8 8m10-16 8 8-8 8' fill='none' stroke='white' stroke-width='3'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
-  <script src="sorting.js" defer></script>
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="#team"><span class="brand-icon" aria-hidden="true">&lt;/&gt;</span><span>GreenExplore<small>CLASSROOM PROJECT</small></span></a>
+    <a class="brand" href="#team"><span class="brand-icon" aria-hidden="true">&lt;/&gt;</span><span>GreenExplore<small>MEET OUR TEAM</small></span></a>
     <nav aria-label="项目导航">
-      <a href="#team" data-view="team" aria-current="page">成员介绍<span>18</span></a>
-      <a href="#sorting" data-view="sorting">排序编程</a>
+      <a href="#team" aria-current="page">成员介绍<span data-member-count>18</span></a>
     </nav>
-    <a class="header-guide" href="#workflow">提交流程 <span aria-hidden="true">↗</span></a>
+    <a class="header-guide" href="#memberGrid">探索成员作品 <span aria-hidden="true">↗</span></a>
   </header>
 
   <main class="container">
-    <section class="identity-bar" aria-label="选择开发成员">
-      <div><span class="eyebrow">YOUR WORKSPACE</span><strong>先找到属于你的那一部分。</strong></div>
+    <section class="identity-bar" aria-label="选择成员">
+      <div><span class="eyebrow">FIND YOUR PEOPLE</span><strong>找到你想认识的伙伴。</strong></div>
       <div class="identity-actions">
-        <label class="sr-only" for="memberSelect">选择你的班级和姓名</label>
-        <select id="memberSelect"><option value="">选择你的班级和姓名</option></select>
-        <button class="button button-primary" id="locateMemberButton" type="button" disabled>定位我的区域 <span aria-hidden="true">↓</span></button>
+        <label class="sr-only" for="memberSelect">选择班级和姓名</label>
+        <select id="memberSelect"><option value="">选择班级和姓名</option></select>
+        <button class="button button-primary" id="locateMemberButton" type="button" disabled>定位成员介绍 <span aria-hidden="true">↓</span></button>
       </div>
     </section>
 
-    <section id="teamTask" aria-labelledby="teamTitle">
+    <section id="team" aria-labelledby="teamTitle">
       <div class="hero">
-        <div><div class="eyebrow">18 PEOPLE. ONE SHARED PROJECT.</div><h1 id="teamTitle">18 位同学，一起开发<span class="accent">。</span></h1><p>每个人完成一份自我介绍，每一次提交让页面更完整。<br>从拉取代码到提交审核，一起走完真实的项目开发流程。</p></div>
-        <div class="hero-number" aria-label="18 位开发者"><strong>18<span>↗</span></strong><span>个独立区域，一起完成</span></div>
+        <div><div class="eyebrow"><span data-member-count>18</span> PEOPLE. MANY POSSIBILITIES.</div><h1 id="teamTitle"><span data-member-count>18</span> 位伙伴，认识彼此<span class="accent">。</span></h1><p>每个人都有自己的故事，也有热爱的事。<br>从一份自我介绍开始，认识彼此，一起探索更多可能。</p></div>
+        <div id="heroNumber" class="hero-number" aria-label="18 位成员"><strong><b data-member-count>18</b><span>↗</span></strong><span>份自我介绍，等你发现</span></div>
       </div>
-      <div class="project-steps" aria-label="开发步骤"><span><b>01</b>拉取仓库</span><i>→</i><span><b>02</b>本地开发</span><i>→</i><span><b>03</b>验证效果</span><i>→</i><span><b>04</b>提交 PR 审核</span></div>
-      <div class="section-heading"><div><span class="eyebrow">PART 02 / FRONTEND COLLABORATION</span><h2>认识每一位，写代码的人。</h2></div><span class="section-note">18 个区域 <i></i> 每人只改一个 HTML 文件</span></div>
-      <div class="team-note" id="memberTip" role="status">选择上方姓名，查看自己的文件。修改文件中的自我介绍、兴趣和学习目标，保存后刷新预览。</div>
-      <div class="team-actions"><span>共建成员墙 <span class="muted">/ MEMBERS</span></span><button id="refreshMembersButton" class="text-button" type="button">↻ 刷新介绍预览</button></div>
+      <div class="project-steps" aria-label="认识我们的方式"><span><b>01</b>认识伙伴</span><i>→</i><span><b>02</b>分享兴趣</span><i>→</i><span><b>03</b>交流想法</span><i>→</i><span><b>04</b>一起成长</span></div>
+      <div class="section-heading"><div><span class="eyebrow">OUR TEAM / SELF INTRODUCTIONS</span><h2>认识每一位，一起探索的人。</h2></div><span class="section-note"><span data-member-count>18</span> 位成员 <i></i> 每个人都有自己的精彩</span></div>
+      <div class="team-note" id="memberTip" role="status">选择上方姓名，定位成员介绍。点击“独立预览”了解完整介绍，或打开“排序演示”看看每位伙伴的代码如何工作。</div>
+      <div class="team-actions"><span>我们的成员墙 <span class="muted">/ MEMBERS</span></span><button id="refreshMembersButton" class="text-button" type="button">↻ 刷新成员介绍</button></div>
       <div id="memberGrid" class="member-grid"></div>
-      <noscript><p class="notice">请启用 JavaScript 显示 18 位成员区域。也可以直接打开 members/01.html 至 members/18.html。</p></noscript>
+      <noscript><p class="notice">请启用 JavaScript 显示成员介绍。也可以直接打开 members/ 中的个人介绍页面（01–18）。</p></noscript>
     </section>
 
-    <section id="sortingTask" aria-labelledby="sortingTitle" hidden>
-      <div class="sorting-heading"><div><div class="eyebrow">PART 01 / ALGORITHM PRACTICE</div><h1 id="sortingTitle">把思路，写成可运行的代码<span class="accent">。</span></h1><p>编写排序程序，验证结果，再下载属于你的那份实现。</p></div><span class="pill">C · C++ · Python</span></div>
-      <div class="workspace-grid">
-        <div class="problem-column">
-          <article class="panel problem-panel">
-            <div class="panel-heading"><h2>01 / 整数数组升序排序</h2><span class="pill">基础算法</span></div>
-            <p>实现 <code>sort_array</code>，将给定整数数组按从小到大排序，并保留所有元素。每次交换或写入后，可调用 <code>snapshot</code> 记录可视化步骤。</p>
-            <div class="example"><span>输入</span><code>[42, 17, 65, 9, 38, 54, 26, 73]</code><span>输出</span><code>[9, 17, 26, 38, 42, 54, 65, 73]</code></div>
-            <div class="problem-meta"><span>2–32 个整数</span><span>数值 -999～999</span><span>运行限时 3 秒</span></div>
-          </article>
-          <article class="panel visualization-panel">
-            <div class="panel-heading"><h2>数组可视化</h2><button class="text-button" id="shuffleButton" type="button">↻ 更换数组</button></div>
-            <div class="visual-caption"><span id="visualStatus">等待代码运行</span><span id="arrayCount">8 个元素 · 升序</span></div>
-            <div id="bars" class="bars" role="img" aria-label="待排序的数组"></div>
-            <div class="legend"><span><i></i>待排序</span><span><i></i>发生变化</span><span><i></i>排序完成</span></div>
-            <div class="playback" id="playback" hidden><button class="text-button" id="playbackButton" type="button">暂停</button><input id="frameSlider" type="range" min="0" max="1" value="0" aria-label="查看排序步骤"><span id="frameCount">0 / 0</span><select id="playbackSpeed" aria-label="回放速度"><option value="400">0.5×</option><option value="200" selected>1×</option><option value="80">2.5×</option></select></div>
-            <details class="custom-array"><summary>自定义测试数组</summary><form id="arrayForm"><label class="sr-only" for="arrayInput">测试数组</label><input id="arrayInput" value="42, 17, 65, 9, 38, 54, 26, 73" spellcheck="false" autocomplete="off"><button class="button" type="submit">应用</button></form><p class="form-error" id="arrayError" aria-live="polite"></p></details>
-          </article>
-        </div>
 
-        <article class="panel editor-panel">
-          <div class="editor-toolbar"><span id="editorFileName">solution.py</span><span id="editedDot" class="edited-dot" hidden title="代码已修改"></span><label class="sr-only" for="languageSelect">编程语言</label><select id="languageSelect"><option value="python">Python 3</option><option value="cpp">C++ 17</option><option value="c">C 11</option></select></div>
-          <div class="editor-contract" id="editorContract"></div>
-          <div class="code-area"><div id="lineNumbers" class="line-numbers" aria-hidden="true"></div><label class="sr-only" for="codeEditor">排序代码</label><textarea id="codeEditor" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-describedby="editorContract" wrap="off"></textarea></div>
-          <div class="editor-status"><span id="saveStatus">草稿保存在当前浏览器</span><span id="cursorPosition">Ln 1, Col 1</span></div>
-          <div class="run-toolbar"><span class="runner-status" id="runnerStatus">连接执行环境…</span><div><button class="button" id="resetCodeButton" type="button">重置</button><button class="button button-primary" id="runButton" type="button"><span>运行并验证</span><kbd>Ctrl ↵</kbd></button></div></div>
-          <section class="console" aria-label="运行与验证结果"><div><strong>验证结果</strong><span id="runDuration">等待执行</span></div><pre class="console-output" id="consoleOutput" role="status" aria-live="polite">完成 TODO，然后点击「运行并验证」。</pre></section>
-        </article>
-      </div>
-      <section class="download-panel" aria-labelledby="downloadTitle">
-        <div><div class="eyebrow">VERIFY → DOWNLOAD → COMMIT</div><h2 id="downloadTitle">验证通过，带上你的名字交付。</h2><p>下载后手动移入仓库的 <code>submissions/</code> 文件夹，再和自我介绍一起提交。</p></div>
-        <div class="download-fields"><label>班级<input id="studentClass" readonly placeholder="请在上方选择成员"></label><label>姓名<input id="studentName" readonly placeholder="请在上方选择成员"></label><button class="button button-primary" id="downloadCodeButton" type="button" disabled>下载已验证程序 ↓</button></div>
-        <p class="download-hint" id="downloadHint" role="status">先选择姓名并通过当前数组验证，即可按「班级_姓名」下载。</p>
-      </section>
-      <p class="sorting-note">验证仅针对当前测试数组。请使用不同数组检查重复值、负数和边界情况；中间动画来自程序记录的 snapshot。</p>
-    </section>
-
-    <section id="workflow" class="workflow" aria-labelledby="workflowTitle">
-      <div class="section-heading"><div><span class="eyebrow">FROM LOCAL TO PULL REQUEST</span><h2 id="workflowTitle">开发完成，交给团队审核。</h2></div><span class="pill">目标分支：main</span></div>
-      <div class="workflow-grid">
-        <article><span class="step-index">01 / START</span><h3>先 Fork，再用 VS Code 克隆</h3><p>安装 Git 并登录 GitHub，在浏览器打开公开的<a href="https://github.com/UnwrittenJuly/GreenStudio_FinalTest_2026" target="_blank" rel="noopener">课程仓库</a>，点击 Fork 保存到自己的账号。VS Code 克隆自己的 Fork 后，配置提交姓名邮箱，再从 main 创建分支。</p><pre id="startSteps">浏览器 → 课程仓库 → Fork
-VS Code → Git: Clone → 自己的 Fork 地址
-打开项目 → main → 创建新分支
-个人分支：student/班级-姓名
-终端 → 运行任务 → 启动项目（Windows）</pre><p class="small-note">完整步骤：在 VS Code 打开根目录的 <code>STUDENT_GUIDE.md</code>，按 Ctrl + Shift + V 预览。</p></article>
-        <article><span class="step-index">02 / DEVELOP</span><h3>只交付属于自己的两个文件</h3><p>排序验证通过后下载；成员介绍直接修改对应 HTML。保存后刷新页面检查效果。</p><div class="deliverable"><span>排序代码</span><code id="sortFilePath">submissions/班级_姓名.py</code><span>个人介绍</span><code id="memberFilePath">members/你的编号.html</code></div><p class="small-note">共享入口、公共样式和运行服务已准备好，个人介绍无需修改其他文件。</p></article>
-        <article><span class="step-index">03 / REVIEW</span><h3>推送自己的 Fork，向老师发起 PR</h3><p>在源代码管理中分别点击两个文件旁的 ＋，填写说明后“提交”，再“发布分支”到 origin（自己的 Fork）。使用 GitHub Pull Requests 扩展向老师仓库创建 PR。</p><pre id="submissionChecklist">提交说明：feat: 完成个人的介绍与排序考核
-来源：自己的 Fork / student/班级-姓名
-目标：UnwrittenJuly/GreenStudio_FinalTest_2026 / main
-填写模板 → 创建 PR → 等待老师审核</pre><button id="copyChecklistButton" class="text-button" type="button" disabled>复制我的提交清单 ↗</button></article>
-      </div>
-      <div class="review-note"><span class="review-dot"></span><p>成功创建 PR 即完成提交流程，老师负责审核和合并。页面展示本地文件，远程仓库以实际 Git 提交和审核结果为准。</p></div>
-    </section>
   </main>
-  <footer class="site-footer container"><span>GREENEXPLORE <i>/</i> BUILD SOMETHING TOGETHER.</span><span>18 位同学 · 一个共同的项目</span></footer>
-  <div id="toast" class="toast" role="status" hidden></div>
+  <footer class="site-footer container"><span>GREENEXPLORE <i>/</i> BUILD SOMETHING TOGETHER.</span><span><span data-member-count>18</span> 位伙伴 · 一起探索更多可能</span></footer>
 </body>
 </html>

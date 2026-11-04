@@ -17,7 +17,7 @@ function Test-Python($Candidate) {
 }
 
 try {
-    $candidates = @(@{ Path = $portablePython; Arguments = @() })
+    $candidates = @()
     if (-not $Portable) {
         foreach ($command in Get-Command python, python3, py -CommandType Application -ErrorAction SilentlyContinue) {
             if ($command.Source -notmatch '[\\/]WindowsApps[\\/]') {
@@ -29,6 +29,7 @@ try {
         $bundledPython = Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
         $candidates += @{ Path = $bundledPython; Arguments = @() }
     }
+    $candidates += @{ Path = $portablePython; Arguments = @() }
     $python = $null
     foreach ($candidate in $candidates) {
         if ((Test-Path -LiteralPath $candidate.Path -PathType Leaf) -and (Test-Python $candidate)) {

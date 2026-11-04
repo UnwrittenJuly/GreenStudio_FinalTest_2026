@@ -1,0 +1,110 @@
+[
+  {
+    "id": "01",
+    "studentClass": "电子2602",
+    "name": "任天灵",
+    "sortingFile": "电子2602_任天灵.py"
+  },
+  {
+    "id": "02",
+    "studentClass": "计2603",
+    "name": "李嘉嬴",
+    "sortingFile": "计2603_李嘉嬴.py"
+  },
+  {
+    "id": "03",
+    "studentClass": "电子2603",
+    "name": "吴柏鑫",
+    "sortingFile": "电子2603_吴柏鑫.py"
+  },
+  {
+    "id": "04",
+    "studentClass": "智能2601",
+    "name": "李佳璐",
+    "sortingFile": "智能2601_李佳璐.py"
+  },
+  {
+    "id": "05",
+    "studentClass": "电子2603",
+    "name": "朱家铭",
+    "sortingFile": "电子2603_朱家铭.py"
+  },
+  {
+    "id": "06",
+    "studentClass": "计2603",
+    "name": "张亮琪",
+    "sortingFile": "计2603_张亮琪.py"
+  },
+  {
+    "id": "07",
+    "studentClass": "智能2602",
+    "name": "叶斌铖",
+    "sortingFile": "智能2602_叶斌铖.py"
+  },
+  {
+    "id": "08",
+    "studentClass": "计2605",
+    "name": "杨沁林",
+    "sortingFile": "计2605_杨沁林.py"
+  },
+  {
+    "id": "09",
+    "studentClass": "电子2603",
+    "name": "崔建涛",
+    "sortingFile": "电子2603_崔建涛.py"
+  },
+  {
+    "id": "10",
+    "studentClass": "智能2601",
+    "name": "韩硕",
+    "sortingFile": "智能2601_韩硕.py"
+  },
+  {
+    "id": "11",
+    "studentClass": "计2601",
+    "name": "周钰山",
+    "sortingFile": "计2601_周钰山 .py"
+  },
+  {
+    "id": "12",
+    "studentClass": "通信2601",
+    "name": "蒲佳妮",
+    "sortingFile": "通信2601_蒲佳妮.py"
+  },
+  {
+    "id": "13",
+    "studentClass": "计2602",
+    "name": "谢宇轩",
+    "sortingFile": "计2602_谢宇轩.cpp"
+  },
+  {
+    "id": "14",
+    "studentClass": "国电2602",
+    "name": "张淇奥",
+    "sortingFile": "国电2602_张淇奥.py"
+  },
+  {
+    "id": "15",
+    "studentClass": "通信2602",
+    "name": "朱惠瑶",
+    "sortingFile": "通信2602_朱惠瑶.py"
+  },
+  {
+    "id": "16",
+    "studentClass": "国电2602",
+    "name": "夏源浩",
+    "sortingFile": "国电2602_夏源浩.py"
+  },
+  {
+    "id": "17",
+    "studentClass": "智能2604",
+    "name": "方君强",
+    "sortingFile": "智能2604_方君强.py"
+  },
+  {
+    "id": "18",
+    "studentClass": "班级待补充",
+    "name": "新成员",
+    "sortingFile": null
+  }
+]

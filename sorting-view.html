@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="查看 GreenExplore 成员的排序作品与运行过程。">
+  <title>排序作品 · GreenExplore</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="sorting-view.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html#team"><span class="brand-icon" aria-hidden="true">&lt;/&gt;</span><span>GreenExplore<small>MEET OUR TEAM</small></span></a>
+    <nav aria-label="作品导航"><a href="index.html#team">成员介绍</a></nav>
+    <a class="header-guide" href="index.html#team">返回成员墙 <span aria-hidden="true">↗</span></a>
+  </header>
+  <main class="container demo-page">
+    <a class="demo-back" href="index.html#team">← 返回成员墙</a>
+    <section class="demo-header" aria-labelledby="demoTitle">
+      <span class="eyebrow">MEMBER WORK / SORTING IN MOTION</span>
+      <h1 id="demoTitle">排序作品</h1>
+      <p id="demoIdentity" class="demo-subtitle">正在读取成员信息…</p>
+      <p class="demo-meta">跟随数组的变化，看看这位伙伴的代码如何工作。</p>
+      <p class="demo-meta"><a id="demoIntroLink" href="index.html#team" hidden>查看这位成员的自我介绍 ↗</a></p>
+    </section>
+
+    <p id="demoMessage" class="demo-message" role="status" aria-live="polite">正在加载作品…</p>
+    <section id="demoEmpty" class="demo-empty" aria-label="作品提示" hidden>
+      <h2 id="demoEmptyTitle">作品尚未添加</h2>
+      <p id="demoEmptyText"></p>
+      <a class="button" href="index.html#team">返回成员墙</a>
+    </section>
+
+    <div id="demoLayout" class="demo-layout" hidden>
+      <section class="demo-panel" aria-labelledby="demoVisualTitle">
+        <div class="demo-panel-heading"><h2 id="demoVisualTitle">排序过程</h2><span id="demoLanguage" class="pill"></span></div>
+        <div class="demo-meta"><span id="demoVisualStatus">准备演示</span><span id="demoDuration"></span></div>
+        <div class="demo-chart" role="img" id="demoChart" aria-label="当前数组">
+          <div class="demo-chart-plot" id="demoPlot"></div>
+        </div>
+        <p id="demoArrayValues" class="demo-array-values"></p>
+        <div class="demo-playback">
+          <div class="demo-playback-actions">
+            <button id="demoPrevious" class="button" type="button" disabled>← 上一步</button>
+            <button id="demoPlay" class="button button-primary" type="button" disabled>播放</button>
+            <button id="demoNext" class="button" type="button" disabled>下一步 →</button>
+            <button id="demoReplay" class="button" type="button" disabled>重播</button>
+          </div>
+          <label class="sr-only" for="demoProgress">排序播放进度</label>
+          <input id="demoProgress" type="range" min="0" max="0" value="0" step="1" disabled>
+          <div class="demo-meta"><span id="demoFrameLabel" class="demo-frame-label">步骤 0 / 0</span><label>播放速度 <select id="demoSpeed"><option value="700">0.5×</option><option value="350" selected>1×</option><option value="140">2.5×</option></select></label></div>
+        </div>
+        <form id="demoArrayForm" class="demo-input-form">
+          <label for="demoArrayInput">换一组数组，看看不同的运行过程</label>
+          <input id="demoArrayInput" value="42, 17, 65, 9, 38, 54, 26, 73" autocomplete="off" spellcheck="false" aria-describedby="demoInputHelp demoInputError" disabled>
+          <div class="demo-playback-actions"><button id="demoRun" class="button button-primary" type="submit" disabled>演示这组数组</button><button id="demoRandom" class="button" type="button" disabled>↻ 换一组数组</button></div>
+          <p id="demoInputHelp" class="demo-input-help">2–32 个整数，范围 -999～999，用逗号或空格分隔。条形图的横线表示 0。</p>
+          <p id="demoInputError" class="demo-message is-error" role="status" hidden></p>
+        </form>
+      </section>
+
+      <section class="demo-panel" aria-labelledby="demoSourceTitle">
+        <div class="demo-panel-heading"><h2 id="demoSourceTitle">成员原始代码</h2><span class="pill">只读展示</span></div>
+        <p class="demo-meta"><code id="demoSourcePath"></code></p>
+        <pre class="demo-source" tabindex="0" aria-label="成员排序源码"><code id="demoSource"></code></pre>
+        <p id="demoRecordingNote" class="demo-input-help"></p>
+        <details id="demoRuntimeDetails" hidden><summary>查看程序输出</summary><pre id="demoRuntimeOutput" class="demo-runtime-output"></pre></details>
+      </section>
+    </div>
+    <noscript><p class="notice">请启用 JavaScript 查看排序作品。你也可以返回成员墙阅读大家的自我介绍。</p></noscript>
+  </main>
+  <footer class="site-footer container"><span>GREENEXPLORE <i>/</i> BUILD SOMETHING TOGETHER.</span><span>分享作品 · 认识彼此</span></footer>
+</body>
+</html>

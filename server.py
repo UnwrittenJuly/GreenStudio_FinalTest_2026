@@ -21,7 +21,7 @@ import threading
 import time
 import webbrowser
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
-from urllib.parse import unquote, urlsplit
+from urllib.parse import parse_qs, unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parent
 MAX_BODY_BYTES = 100_000
@@ -116,6 +116,9 @@ def _run_process(command: list[str], cwd: Path, timeout: float, tag: str) -> dic
     environment = dict(os.environ)
     environment["PYTHONIOENCODING"] = "utf-8"
     environment["PYTHONUNBUFFERED"] = "1"
+    # Keep compiler scratch files beside this run's other temporary files.
+    for variable in ("TMP", "TEMP", "TMPDIR"):
+        environment[variable] = str(cwd)
     # MinGW executables may need runtime DLLs beside their compiler.
     compiler_dirs = {str(Path(item).parent) for item in (_compiler("gcc"), _compiler("g++")) if item}
     environment["PATH"] = os.pathsep.join(sorted(compiler_dirs) + [environment.get("PATH", "")])
@@ -377,11 +380,45 @@ class InterviewHandler(SimpleHTTPRequestHandler):
             return False
         return candidate.is_file() and candidate.suffix.lower() in PUBLIC_SUFFIXES
 
+    def _member_code(self) -> None:
+        identifiers = parse_qs(urlsplit(self.path).query, keep_blank_values=True).get("id", [])
+        if len(identifiers) != 1:
+            self._json(404, {"ok": False, "error": "请选择一位成员查看排序程序。"})
+            return
+        member_id = identifiers[0]
+        try:
+            members = json.loads((ROOT / "members.json").read_text(encoding="utf-8-sig"))
+        except (OSError, ValueError):
+            self._json(500, {"ok": False, "error": "成员名单暂时无法读取，请稍后重试。"})
+            return
+        member = next((item for item in members if isinstance(item, dict) and item.get("id") == member_id), None) if isinstance(members, list) else None
+        if member is None:
+            self._json(404, {"ok": False, "error": "未找到这位成员。"})
+            return
+        filename = member.get("sortingFile")
+        if not isinstance(filename, str) or not filename or any(char in filename for char in ("/", "\\", ":", "\0")):
+            self._json(404, {"ok": False, "error": "这位成员暂未提供排序程序。"})
+            return
+        directory = (ROOT / "submissions").resolve()
+        source = (directory / filename).resolve()
+        language = {".py": "python", ".c": "c", ".cpp": "cpp"}.get(source.suffix.lower())
+        if source.parent != directory or language is None:
+            self._json(404, {"ok": False, "error": "这位成员的排序程序暂时无法读取。"})
+            return
+        try:
+            code = source.read_text(encoding="utf-8-sig")
+        except (OSError, UnicodeError):
+            self._json(404, {"ok": False, "error": "这位成员的排序程序暂时无法读取。"})
+            return
+        self._json(200, {"ok": True, "memberId": member_id, "language": language, "file": f"submissions/{filename}", "code": code})
+
     def do_GET(self) -> None:
         if not self._trusted_request():
             return
         if urlsplit(self.path).path == "/api/health":
             self._json(200, {"ok": True, "languages": language_status(), "maxFrames": MAX_FRAMES, "runTimeoutSeconds": RUN_TIMEOUT})
+        elif urlsplit(self.path).path == "/api/member-code":
+            self._member_code()
         elif self._static_allowed():
             super().do_GET()
         else:
@@ -390,7 +427,9 @@ class InterviewHandler(SimpleHTTPRequestHandler):
     def do_HEAD(self) -> None:
         if not self._trusted_request():
             return
-        if self._static_allowed():
+        if urlsplit(self.path).path == "/api/member-code":
+            self._member_code()
+        elif self._static_allowed():
             super().do_HEAD()
         else:
             self.send_error(404, "File not found")

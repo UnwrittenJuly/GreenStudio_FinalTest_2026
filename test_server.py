@@ -2,8 +2,12 @@
 
 import http.client
 import json
+from pathlib import Path
+import tempfile
 import threading
 import unittest
+from unittest.mock import patch
+from urllib.parse import quote
 
 import server
 
@@ -160,7 +164,7 @@ class HTTPTests(unittest.TestCase):
         self.assertIn(b"html", content.lower())
 
     def test_shared_assets_and_all_member_pages(self):
-        paths = ["/app.js", "/sorting.js", "/styles.css", "/members/card.css"]
+        paths = ["/app.js", "/sorting.js", "/styles.css", "/members/card.css", "/members.json"]
         paths += [f"/members/{index:02}.html" for index in range(1, 19)]
         for path in paths:
             with self.subTest(path=path):
@@ -194,6 +198,66 @@ class HTTPTests(unittest.TestCase):
     def test_invalid_json_and_content_type(self):
         self.assertEqual(self.request("POST", "/api/run", "{}", {"Content-Type": "text/plain"})[0], 415)
         self.assertEqual(self.request("POST", "/api/run", "{", {"Content-Type": "application/json"})[0], 400)
+
+    def test_registered_member_code_matches_the_retained_source_files(self):
+        members = json.loads((server.ROOT / "members.json").read_text(encoding="utf-8-sig"))
+        self.assertEqual(len(members), 18)
+        for member in members:
+            with self.subTest(member=member["id"]):
+                status, content = self.request("GET", f'/api/member-code?id={member["id"]}')
+                result = json.loads(content)
+                filename = member.get("sortingFile")
+                if not filename:
+                    self.assertEqual(status, 404)
+                    self.assertFalse(result["ok"])
+                    self.assertTrue(result["error"])
+                    continue
+                self.assertEqual(status, 200)
+                self.assertTrue(result["ok"])
+                self.assertEqual(result["memberId"], member["id"])
+                self.assertEqual(result["file"], f"submissions/{filename}")
+                self.assertEqual(result["language"], {".py": "python", ".c": "c", ".cpp": "cpp"}[Path(filename).suffix])
+                self.assertEqual(result["code"], (server.ROOT / "submissions" / filename).read_text(encoding="utf-8-sig"))
+                self.assertEqual(self.request("GET", "/" + quote(result["file"]))[0], 404)
+
+    def test_member_code_rejects_unknown_or_ambiguous_identity(self):
+        for query in ("", "?id=", "?id=19", "?id=unknown", "?id=../server.py", "?id=01&id=02", "?file=server.py"):
+            with self.subTest(query=query):
+                status, content = self.request("GET", "/api/member-code" + query)
+                self.assertEqual(status, 404)
+                self.assertFalse(json.loads(content)["ok"])
+        self.assertEqual(self.request("GET", "/members/19.html")[0], 404)
+
+    def test_member_code_only_reads_registered_submission_files(self):
+        with tempfile.TemporaryDirectory(prefix="greenexplore-members-") as temporary:
+            directory = Path(temporary)
+            (directory / "submissions").mkdir()
+            (directory / "submissions" / "unregistered.py").write_text("private source", encoding="utf-8")
+            (directory / "outside.py").write_text("outside source", encoding="utf-8")
+            for filename in ("../outside.py", "..\\outside.py", str(directory / "outside.py"), "missing.py", "notes.txt", None):
+                with self.subTest(filename=filename):
+                    (directory / "members.json").write_text(json.dumps([{"id": "01", "sortingFile": filename}]), encoding="utf-8")
+                    with patch.object(server, "ROOT", directory):
+                        status, content = self.request("GET", "/api/member-code?id=01&file=unregistered.py")
+                    self.assertEqual(status, 404)
+                    self.assertFalse(json.loads(content)["ok"])
+                    self.assertNotIn(b"private source", content)
+                    self.assertNotIn(b"outside source", content)
+
+    def test_member_code_head_and_local_read_only_contract(self):
+        connection = http.client.HTTPConnection("127.0.0.1", self.port, timeout=10)
+        try:
+            connection.request("HEAD", "/api/member-code?id=01")
+            response = connection.getresponse()
+            self.assertEqual(response.status, 200)
+            self.assertIn("application/json", response.getheader("Content-Type"))
+            self.assertGreater(int(response.getheader("Content-Length")), 0)
+            self.assertEqual(response.read(), b"")
+        finally:
+            connection.close()
+        for headers in ({"Origin": "https://example.com"}, {"Host": "attacker.example"}):
+            self.assertEqual(self.request("GET", "/api/member-code?id=01", headers=headers)[0], 403)
+        self.assertEqual(self.request("POST", "/api/member-code?id=01", "{}")[0], 404)
 
 
 if __name__ == "__main__":
