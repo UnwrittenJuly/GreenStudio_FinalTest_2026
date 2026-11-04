@@ -161,7 +161,7 @@ class HTTPTests(unittest.TestCase):
 
     def test_shared_assets_and_all_member_pages(self):
         paths = ["/app.js", "/sorting.js", "/styles.css", "/members/card.css"]
-        paths += [f"/members/{index:02}.html" for index in range(1, 16)]
+        paths += [f"/members/{index:02}.html" for index in range(1, 19)]
         for path in paths:
             with self.subTest(path=path):
                 status, content = self.request("GET", path)

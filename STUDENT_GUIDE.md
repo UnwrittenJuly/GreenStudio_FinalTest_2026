@@ -283,6 +283,9 @@ submissions/电子2602_任天灵.py
 | 通信2601 | 蒲佳妮 | `members/13.html` |
 | 计2602 | 谢宇轩 | `members/14.html` |
 | 国电2602 | 张淇奥 | `members/15.html` |
+| 通信2602 | 朱惠瑶 | `members/16.html` |
+| 国电2602 | 夏源浩 | `members/17.html` |
+| 智能2604 | 方君强 | `members/18.html` |
 
 1. 在 VS Code 资源管理器中展开 `members`，打开自己对应的 HTML。
 2. 将“待完成：用一句话介绍你自己。”换成自己的介绍。
