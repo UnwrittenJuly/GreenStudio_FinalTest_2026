@@ -471,8 +471,14 @@ class InterviewHandler(SimpleHTTPRequestHandler):
         super().end_headers()
 
 
+class LocalHTTPServer(ThreadingHTTPServer):
+    # Each member preview loads its own HTML, CSS and images. Allow their
+    # simultaneous connections to queue instead of refusing preview assets.
+    request_queue_size = 128
+
+
 def create_server(port: int = 8000) -> ThreadingHTTPServer:
-    server = ThreadingHTTPServer(("127.0.0.1", port), InterviewHandler)
+    server = LocalHTTPServer(("127.0.0.1", port), InterviewHandler)
     server.daemon_threads = True
     return server
 

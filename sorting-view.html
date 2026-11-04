@@ -5,23 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="查看 GreenExplore 成员的排序作品与运行过程。">
   <title>排序作品 · GreenExplore</title>
+  <link rel="icon" type="image/png" href="assets/green-studio-logo.png">
   <link rel="stylesheet" href="styles.css">
   <script src="sorting-view.js" defer></script>
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="index.html#team"><span class="brand-icon" aria-hidden="true">&lt;/&gt;</span><span>GreenExplore<small>MEET OUR TEAM</small></span></a>
-    <nav aria-label="作品导航"><a href="index.html#team">成员介绍</a></nav>
-    <a class="header-guide" href="index.html#team">返回成员墙 <span aria-hidden="true">↗</span></a>
+    <a class="brand" href="index.html#team"><img class="brand-logo" src="assets/green-studio-logo.png" alt="绿荫工作室标志" width="58" height="58"><span>GreenExplore<small>GREEN.STUDIO · MEET OUR TEAM</small></span></a>
+    <nav aria-label="作品导航"><a class="button" href="index.html#team">成员介绍</a></nav>
+    <a class="header-guide button" href="index.html#team">返回成员墙 <span aria-hidden="true">↗</span></a>
   </header>
   <main class="container demo-page">
-    <a class="demo-back" href="index.html#team">← 返回成员墙</a>
+    <a class="demo-back button" href="index.html#team">← 返回成员墙</a>
     <section class="demo-header" aria-labelledby="demoTitle">
       <span class="eyebrow">MEMBER WORK / SORTING IN MOTION</span>
       <h1 id="demoTitle">排序作品</h1>
       <p id="demoIdentity" class="demo-subtitle">正在读取成员信息…</p>
       <p class="demo-meta">跟随数组的变化，看看这位伙伴的代码如何工作。</p>
-      <p class="demo-meta"><a id="demoIntroLink" href="index.html#team" hidden>查看这位成员的自我介绍 ↗</a></p>
+      <p class="demo-meta"><a id="demoIntroLink" class="button button-secondary" href="index.html#team" hidden>查看这位成员的自我介绍 ↗</a></p>
     </section>
 
     <p id="demoMessage" class="demo-message" role="status" aria-live="polite">正在加载作品…</p>
@@ -64,7 +65,7 @@
         <p class="demo-meta"><code id="demoSourcePath"></code></p>
         <pre class="demo-source" tabindex="0" aria-label="成员排序源码"><code id="demoSource"></code></pre>
         <p id="demoRecordingNote" class="demo-input-help"></p>
-        <details id="demoRuntimeDetails" hidden><summary>查看程序输出</summary><pre id="demoRuntimeOutput" class="demo-runtime-output"></pre></details>
+        <details id="demoRuntimeDetails" hidden><summary class="button">查看程序输出</summary><pre id="demoRuntimeOutput" class="demo-runtime-output"></pre></details>
       </section>
     </div>
     <noscript><p class="notice">请启用 JavaScript 查看排序作品。你也可以返回成员墙阅读大家的自我介绍。</p></noscript>

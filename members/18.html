@@ -3,18 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>新成员 · 自我介绍</title>
-  <link rel="stylesheet" href="card.css">
+  <meta name="description" content="申铭清，通信2401，绿荫工作室负责人。可交互的开发板3D模型、EDA电路、Linux系统与ROS机器人工作展示。">
+  <title>申铭清 · 工程与开发 | Green Studio</title>
+  <link rel="icon" href="../assets/green-studio-logo.png">
+  <script>if (new URLSearchParams(location.search).get('preview') === '1') document.documentElement.dataset.preview = 'true';</script>
+  <link rel="stylesheet" href="18-lab.css">
+  <script src="18-board.js" defer></script>
+  <script src="18-ros.js" defer></script>
+  <script src="18-lab.js" defer></script>
 </head>
-<body style="--accent: #39785b">
-  <p class="eyebrow">ABOUT ME / 18</p>
-  <h2>新成员</h2>
-  <p class="class-name">班级待补充</p>
-  <!-- 在此补充自我介绍、兴趣标签和学习目标。姓名和班级确定后，同步更新 members.json 中的名单。 -->
-  <p class="intro">自我介绍待补充，期待与你认识。</p>
-  <ul class="tags" aria-label="我的技能和兴趣">
-    <li>兴趣待补充</li><li>技能待补充</li>
-  </ul>
-  <p class="goal"><strong>我想学会</strong>学习目标待补充。</p>
+<body>
+  <div class="studio-watermark" aria-hidden="true"></div>
+
+  <section class="preview-card" aria-label="申铭清的技能选项">
+    <div class="preview-heading"><span class="section-label">ENGINEERING PROFILE / 18</span><img src="../assets/green-studio-logo.png" alt="" width="34" height="34"></div>
+    <h2>申铭清</h2>
+    <p class="preview-identity">通信2401 <span>绿荫工作室负责人</span></p>
+    <div class="preview-options">
+      <button data-open="embedded" type="button"><span class="option-index">01</span>嵌入式开发<span aria-hidden="true">↗</span></button>
+      <button data-open="eda" type="button"><span class="option-index">02</span>EDA 电路设计<span aria-hidden="true">↗</span></button>
+      <button data-open="linux" type="button"><span class="option-index">03</span>Linux 开发<span aria-hidden="true">↗</span></button>
+      <button data-open="ros" type="button"><span class="option-index">04</span>ROS 机器人<span aria-hidden="true">↗</span></button>
+    </div>
+    <p class="preview-foot">3D结构 · 电路交互 · 系统开发</p>
+  </section>
+
+  <main class="full-page">
+    <header class="site-topbar">
+      <a class="studio-brand" href="../index.html#member-18"><img src="../assets/green-studio-logo.png" alt="绿荫工作室标志" width="42" height="42"><span><strong>GREEN STUDIO</strong><small>ENGINEERING & DEVELOPMENT</small></span></a>
+      <a class="control back-link" href="../index.html#member-18">← 返回成员墙</a>
+    </header>
+
+    <section class="profile-heading" aria-labelledby="profileTitle">
+      <div>
+        <p class="section-label">PROFILE 18 / COMMUNICATION & ELECTRONICS</p>
+        <h1 id="profileTitle">申铭清<span>工程与开发</span></h1>
+        <p class="profile-identity"><span>通信2401</span><strong>绿荫工作室负责人</strong></p>
+      </div>
+      <p class="profile-intro">从硬件接口到系统软件，连接电路、固件与机器人。<br>旋转开发板、观察电路、操作终端，或为机器人设置一个目标。</p>
+    </section>
+
+    <nav class="skill-navigation" aria-label="技能选择">
+      <div class="skill-tabs" role="tablist" aria-label="工程技能">
+        <button class="skill-tab" role="tab" id="tab-embedded" data-skill="embedded" aria-selected="true" aria-controls="skillPanel" tabindex="0"><span>01 / HARDWARE</span><strong>嵌入式开发</strong><small>开发板 · 固件 · 接口调试</small></button>
+        <button class="skill-tab" role="tab" id="tab-eda" data-skill="eda" aria-selected="false" aria-controls="skillPanel" tabindex="-1"><span>02 / CIRCUIT DESIGN</span><strong>EDA 电路设计</strong><small>原理图 · PCB · 三维核对</small></button>
+        <button class="skill-tab" role="tab" id="tab-linux" data-skill="linux" aria-selected="false" aria-controls="skillPanel" tabindex="-1"><span>03 / SYSTEM</span><strong>Linux 开发</strong><small>系统环境 · 驱动 · 服务</small></button>
+        <button class="skill-tab" role="tab" id="tab-ros" data-skill="ros" aria-selected="false" aria-controls="skillPanel" tabindex="-1"><span>04 / ROBOTICS</span><strong>ROS 机器人</strong><small>节点通信 · 感知 · 运动</small></button>
+      </div>
+    </nav>
+
+    <section class="workbench" id="skillPanel" role="tabpanel" aria-labelledby="tab-embedded" data-skill="embedded" tabindex="0">
+      <header class="workbench-heading">
+        <div><p class="section-label" id="sceneIndex">01 / EMBEDDED SYSTEMS</p><h2 id="sceneTitle">嵌入式开发与接口调试</h2><p class="scene-summary" id="sceneSummary">围绕开发板连接、固件构建与设备接口，梳理开发和调试过程。</p></div>
+        <div class="playback-controls"><button id="replayButton" class="control" type="button">↻ 重播流程</button><button id="pauseButton" class="control" type="button" aria-pressed="false">暂停动画</button></div>
+      </header>
+
+      <div class="reference-switch" id="boardSwitch" role="group" aria-label="选择实物开发板">
+        <span class="switch-label">开发板模型</span>
+        <button class="control" data-board="mspm0" type="button" aria-pressed="true">MSPM0 开发板</button>
+        <button class="control" data-board="stm32" type="button" aria-pressed="false">STM32 开发板</button>
+      </div>
+      <div class="reference-switch" id="edaSwitch" role="group" aria-label="选择EDA设计资料" hidden>
+        <span class="switch-label">电路工作台</span>
+        <button class="control" data-eda-view="schematic" type="button" aria-pressed="true">原理图模块</button>
+        <button class="control" data-eda-view="pcb" type="button" aria-pressed="false">PCB 结构模型</button>
+        <button class="control" id="edaStep" type="button">单步时钟 ＋1</button>
+      </div>
+      <div class="reference-switch" id="linuxSwitch" role="group" aria-label="选择Linux系统" hidden>
+        <span class="switch-label">系统环境</span>
+        <button class="control" data-system="ubuntu" type="button" aria-pressed="true">Ubuntu</button>
+        <button class="control" data-system="debian" type="button" aria-pressed="false">Debian</button>
+        <button class="control" data-system="fedora" type="button" aria-pressed="false">Fedora</button>
+        <button class="control" data-system="raspberry" type="button" aria-pressed="false">Raspberry Pi OS</button>
+      </div>
+      <div class="reference-switch task-actions" id="linuxActions" role="group" aria-label="模拟终端操作" hidden>
+        <span class="switch-label">交互操作</span>
+        <button class="control" data-command="system" type="button">识别系统</button>
+        <button class="control" data-command="devices" type="button">查看设备</button>
+        <button class="control" data-command="build" type="button">构建程序</button>
+        <button class="control" data-command="services" type="button">管理服务</button>
+      </div>
+      <div class="reference-switch" id="rosSwitch" role="group" aria-label="选择ROS交互视图" hidden>
+        <span class="switch-label">机器人工作台</span>
+        <button class="control" data-ros-view="model" type="button" aria-pressed="true">机器人结构</button>
+        <button class="control" data-ros-view="simulation" type="button" aria-pressed="false">导航与扫描</button>
+      </div>
+
+      <div class="stage">
+        <figure class="reference-figure model-figure" id="boardFigure">
+          <div class="figure-topline"><span id="boardModelLabel">MSPM0 开发板 · 3D 结构模型</span><span class="diagram-badge">可交互</span></div>
+          <div class="model-viewport" id="boardViewport"><canvas id="boardCanvas" tabindex="0" aria-label="可拖动旋转和缩放的开发板3D结构模型"></canvas></div>
+          <div class="model-controls"><button class="control compact-control" id="boardResetView" type="button">复位视角</button><button class="control compact-control" id="boardAutoRotate" type="button" aria-pressed="false">自动旋转</button><button class="control compact-control" id="boardZoomIn" type="button" aria-label="放大开发板">＋</button><button class="control compact-control" id="boardZoomOut" type="button" aria-label="缩小开发板">－</button></div>
+          <figcaption><span id="boardModelInfo">拖动旋转 · 滚轮或按钮缩放 · 观察主控、排针与接口。</span><br>依据实物布局构建的结构参考模型。</figcaption>
+        </figure>
+        <figure class="reference-figure model-figure" id="rosFigure" hidden>
+          <div class="figure-topline"><span>ROS / 机器人与导航</span><span class="diagram-badge">交互示意</span></div>
+          <div class="model-viewport ros-viewport" id="rosViewport"><canvas id="rosCanvas" tabindex="0" aria-label="机器人结构与可点击设置目标的导航场景"></canvas></div>
+          <div class="model-controls"><button class="control compact-control" id="rosViewReset" type="button">复位视角</button><button class="control compact-control" id="rosResetGoal" type="button">重置机器人</button><button class="control compact-control" id="rosRandomGoal" type="button">设置新目标</button></div>
+          <figcaption id="rosGoalStatus" role="status">结构视图可拖动旋转；切换“导航与扫描”后点击空地设置目标。</figcaption>
+        </figure>
+        <div class="diagram-shell" id="diagramShell"><div class="diagram-heading"><span>INTERACTIVE / SIGNAL VIEW</span><span class="diagram-badge">流程示意</span></div><div class="artwork" id="artwork" aria-live="off"></div><p class="simulation-note" id="simulationNote">在工作台中操作模型或模块，查看结构、信号与系统之间的关系。</p></div>
+      </div>
+
+      <div class="process-status"><span class="status-indicator" aria-hidden="true"></span><span id="sceneStatus" role="status">接口与工作流程</span><span class="status-kind">WORKFLOW VISUALIZATION</span></div>
+      <div class="work-details"><div><h3>具体工作环节</h3><ol class="work-steps" id="workSteps"></ol></div><div class="skill-tag-panel"><h3>技术关键词</h3><div class="skill-tags" id="skillTags"></div></div></div>
+    </section>
+
+    <aside class="technical-references" aria-label="技术参考"><span>技术参考</span><a href="https://www.ti.com/product/MSPM0G3507" target="_blank" rel="noopener">TI / MSPM0</a><a href="https://www.st.com/en/microcontrollers-microprocessors/stm32f103/documentation.html" target="_blank" rel="noopener">ST / STM32</a><a href="https://www.kicad.org/discover/3dviewer/" target="_blank" rel="noopener">KiCad / PCB</a><a href="https://ubuntu.com/desktop/docs/en/latest/tutorial/the-linux-command-line-for-beginners/" target="_blank" rel="noopener">Ubuntu / Linux</a><a href="https://docs.nav2.org/lyrical/getting_started/quickstart/quickstart/" target="_blank" rel="noopener">Nav2 / ROS</a></aside>
+    <footer class="profile-footer"><span>SHEN MINGQING / GREEN STUDIO</span><span>硬件 · 电路 · 系统 · 机器人</span></footer>
+  </main>
 </body>
 </html>

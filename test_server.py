@@ -2,6 +2,7 @@
 
 import http.client
 import json
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 import tempfile
 import threading
@@ -179,6 +180,21 @@ class HTTPTests(unittest.TestCase):
         self.assertEqual(response.getheader("Cache-Control"), "no-store")
         response.read()
         connection.close()
+
+    def test_preview_assets_survive_simultaneous_member_loads(self):
+        paths = ["/members/card.css", "/members/02.html", "/members/16.html", "/members/14-bg.jpg"] * 16
+        ready = threading.Barrier(len(paths))
+
+        def load_asset(path):
+            ready.wait(timeout=10)
+            return self.request("GET", path)
+
+        with ThreadPoolExecutor(max_workers=len(paths)) as executor:
+            responses = list(executor.map(load_asset, paths))
+        for path, (status, content) in zip(paths, responses):
+            with self.subTest(path=path):
+                self.assertEqual(status, 200)
+                self.assertTrue(content)
 
     def test_private_sources_and_hidden_files_are_not_served(self):
         for path in ("/.git/config", "/%2egit/config", "/server.py", "/test_server.py", "/../server.py", "/%00.js"):

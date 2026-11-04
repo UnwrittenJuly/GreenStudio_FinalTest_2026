@@ -103,8 +103,9 @@
   },
   {
     "id": "18",
-    "studentClass": "班级待补充",
-    "name": "新成员",
+    "studentClass": "通信2401",
+    "name": "申铭清",
+    "compactPreview": true,
     "sortingFile": null
   }
 ]
